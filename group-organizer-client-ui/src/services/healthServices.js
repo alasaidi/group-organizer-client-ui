@@ -6,6 +6,11 @@ export const getHealth = async () => {
 };
 
 export const create = async (data = {}) => {
-  const result = await http.post("/groups", data);
-  return result;
+  try {
+    const result = await http.post("/groups", data);
+    return result;
+  } catch (error) {
+    console.error("Error creating group:", error.response?.data || error.message);
+    throw error;
+  }
 };
