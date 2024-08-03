@@ -36,9 +36,15 @@ export const HomePage = () => {
     setRequest((previous) => ({ ...previous, [name]: value }));
   };
   const handleSubmit = async () => {
-    const result = await create(request);
-    console.log("member created:", result.data);
-    setIsChange(!isChange);
+    try {
+      const result = await create(request);
+      console.log("Group created:", result.data);
+      setIsChange(!isChange);
+      // Clear the form or show a success message
+    } catch (error) {
+      console.error("Failed to create group:", error);
+      // Show an error message to the user
+    }
   };
 
   return (
